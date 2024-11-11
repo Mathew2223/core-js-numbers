@@ -49,8 +49,8 @@ function getCircleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(value1, value2) {
-  return Math.abs((value1 + value2) / 2);
+function getAverage(/* value1, value2 */) {
+  throw new Error('Not implemented');
 }
 
 /**
@@ -84,17 +84,8 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(a, b) {
-  if (a >= 0 && b <= 0) {
-    return -b / a;
-  }
-  if (a <= 0 && b >= 0) {
-    return b / -a;
-  }
-  if (a <= 0 && b <= 0) {
-    return b / a;
-  }
-  return null;
+function getLinearEquationRoot(/* a, b */) {
+  throw new Error('Not implemented');
 }
 
 /**
@@ -451,11 +442,8 @@ function getNumberValue(number) {
  * 5        => true
  * '5'      => false
  */
-function isNumber(number) {
-  if (number === Number) {
-    return true;
-  }
-  return false;
+function isNumber(/* number */) {
+  throw new Error('Not implemented');
 }
 
 /**
@@ -657,14 +645,8 @@ function getHypotenuse(a, b) {
  * 10 => 5
  * 15 => 8
  */
-function getCountOfOddNumbers(number) {
-  let sum = 0;
-  for (let i = 0; i <= number; i += 1) {
-    if (i % 2 !== 0) {
-      sum += i;
-    }
-  }
-  return sum;
+function getCountOfOddNumbers(/* number */) {
+  throw new Error('Not implemented');
 }
 
 module.exports = {
