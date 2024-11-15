@@ -50,10 +50,7 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  if (value1 + value2 !== 0) {
-    return (value1 + value2) / 2;
-  }
-  return 0;
+  return value1 / 2 + value2 / 2;
 }
 
 /**
@@ -501,13 +498,7 @@ function getFloatOnString(str) {
  * '10', 8              => 8
  */
 function getIntegerOnString(str, base) {
-  const validChars = `0123456789abcdefghijklmnopqrstuvwxyz`.slice(0, base);
-  const regex = new RegExp(`^["${validChars}"]+`, 'i');
-  const match = str.match(regex);
-  if (!match) {
-    return NaN;
-  }
-  return parseInt(match[0], base);
+  return Number.parseInt(str, base);
 }
 /**
  * Returns whether a number is a safe integer.
@@ -660,7 +651,14 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  return Math.floor((number + 1) / 2);
+  let count = 0;
+
+  for (let i = 0; i <= Math.abs(number); i += 1) {
+    if (i % 2 !== 0) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 module.exports = {
