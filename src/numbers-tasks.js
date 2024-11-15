@@ -49,8 +49,8 @@ function getCircleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(value1, value2) {
-  return value1 / 2 + value2 / 2;
+function getAverage(/* value1, value2 */) {
+  throw new Error('Not implemented');
 }
 
 /**
@@ -84,8 +84,8 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(a, b) {
-  return -b / a;
+function getLinearEquationRoot(/* a, b */) {
+  throw new Error('Not implemented');
 }
 
 /**
@@ -364,8 +364,8 @@ function getSine(num) {
  * 255, 16 => 'ff'
  * 2, 2    => '10'
  */
-function numberToStringInBase(/* number, base */) {
-  throw new Error('Not implemented');
+function numberToStringInBase(number, base) {
+  return parseInt(number, base);
 }
 
 /**
@@ -393,8 +393,8 @@ function toExponential(/* number, fractionDigits */) {
  * 12345, 2    => '12345.00'
  * 12.345, 1   => '12.3'
  */
-function toFixed(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toFixed(number, fractionDigits) {
+  return number.toFixed(fractionDigits);
 }
 
 /**
@@ -409,8 +409,8 @@ function toFixed(/* number, fractionDigits */) {
  * 12345, 7    => '12345.00'
  * 12.345, 4   => '12.35'
  */
-function toPrecision(/* number, precision */) {
-  throw new Error('Not implemented');
+function toPrecision(number, precision) {
+  return number.toPrecision(precision);
 }
 
 /**
@@ -457,8 +457,8 @@ function isNumber(number) {
  * 5.1  => false
  * '5'  => false
  */
-function isInteger(/* number */) {
-  throw new Error('Not implemented');
+function isInteger(number) {
+  return Number.isInteger(number);
 }
 
 /**
@@ -472,10 +472,7 @@ function isInteger(/* number */) {
  * 'abcdefgh'      => NaN
  */
 function getFloatOnString(str) {
-  if (Number.parseFloat(str)) {
-    return str;
-  }
-  return NaN;
+  return parseFloat(str);
 }
 
 /**
@@ -492,8 +489,8 @@ function getFloatOnString(str) {
  * '1.234', 2           => 1
  * '10', 8              => 8
  */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+function getIntegerOnString(str, base) {
+  return Number.isInteger(str, base);
 }
 
 /**
@@ -646,8 +643,16 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  const positiveNumber = Math.abs(number);
-  return Math.floor((positiveNumber + 1) / 2);
+  if (number < 0) {
+    return 0;
+  }
+  let oddNum = 0;
+  for (let i = 0; i <= number; i += 1) {
+    if (i % 2 !== 0) {
+      oddNum += 1;
+    }
+  }
+  return oddNum;
 }
 
 module.exports = {
