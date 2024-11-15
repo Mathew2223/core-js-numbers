@@ -49,8 +49,11 @@ function getCircleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  if (value1 + value2 !== 0) {
+    return (value1 + value2) / 2;
+  }
+  return 0;
 }
 
 /**
@@ -84,8 +87,8 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(/* a, b */) {
-  throw new Error('Not implemented');
+function getLinearEquationRoot(a, b) {
+  return -b / a;
 }
 
 /**
@@ -105,8 +108,16 @@ function getLinearEquationRoot(/* a, b */) {
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  const dots = x2 * x1 + y2 * y1;
+  const xy1 = Math.sqrt(x1 * x1 + y1 * y1);
+  const xy2 = Math.sqrt(x2 * x2 + y2 * y2);
+  if (xy1 === 0 || xy2 === 0) {
+    return 0;
+  }
+  const cos = dots / (xy1 * xy2);
+  const cosMax = Math.max(-1, Math.min(1, cos));
+  return Math.acos(cosMax);
 }
 
 /**
@@ -378,8 +389,8 @@ function numberToStringInBase(number, base) {
  * @example:
  * 12345, 2    => '1.23e+4'
  */
-function toExponential(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toExponential(number, fractionDigits) {
+  return number.toExponential(fractionDigits);
 }
 
 /**
@@ -490,9 +501,15 @@ function getFloatOnString(str) {
  * '10', 8              => 8
  */
 function getIntegerOnString(str, base) {
-  return Number.isInteger(str, base);
+  const validChars = `0123456789abcdefghijklmnopqrstuvwxyz`.slice(0, base);
+  const regex = new RegExp(`^["${validChars}"]+`, 'i');
+  const match = str.match(regex);
+  if (!match) {
+    return NaN;
+  }
+  const parsedValue = parseInt(match[0], base);
+  return parsedValue;
 }
-
 /**
  * Returns whether a number is a safe integer.
  *
