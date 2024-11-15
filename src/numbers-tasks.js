@@ -376,7 +376,7 @@ function getSine(num) {
  * 2, 2    => '10'
  */
 function numberToStringInBase(number, base) {
-  return parseInt(number, base);
+  return number.toString(base);
 }
 
 /**
@@ -483,7 +483,7 @@ function isInteger(number) {
  * 'abcdefgh'      => NaN
  */
 function getFloatOnString(str) {
-  return parseFloat(str);
+  return Number.parseFloat(str);
 }
 
 /**
@@ -507,8 +507,7 @@ function getIntegerOnString(str, base) {
   if (!match) {
     return NaN;
   }
-  const parsedValue = parseInt(match[0], base);
-  return parsedValue;
+  return parseInt(match[0], base);
 }
 /**
  * Returns whether a number is a safe integer.
@@ -596,7 +595,8 @@ function getIntegerPartNumber(number) {
  * 0.1, 0.2, 0.3 => 0.6
  */
 function getSumOfNumbers(x1, x2, x3) {
-  return toFixed(x1 + x2 + x3);
+  const sum = x1 + x2 + x3;
+  return sum.toFixed(1);
 }
 
 /**
@@ -660,16 +660,7 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  if (number < 0) {
-    return 0;
-  }
-  let oddNum = 0;
-  for (let i = 0; i <= number; i += 1) {
-    if (i % 2 !== 0) {
-      oddNum += 1;
-    }
-  }
-  return oddNum;
+  return Math.floor((number + 1) / 2);
 }
 
 module.exports = {
